@@ -51,7 +51,7 @@ const vm = initial => {
 
         const versionNumbers = [...version.split('.'), '0', '0']
             .filter((v, i) => i < 3)
-            .map(value => /[0-9]+/.test(value) ? Number(value) : Number.NaN)
+            .map(value => !/[^0-9]+/.test(value) ? Number.NaN : Number(v))
 
         if (versionNumbers.some(v => isNaN(v))) {
             throw new Error('Error occured while parsing version!')
